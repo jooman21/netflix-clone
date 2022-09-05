@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import  './Row.css'
 import axios from './axios'
@@ -19,6 +20,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     fetchData();
   }, [fetchUrl]);
   console.table(movies)
+  
   const opts = {
     height: "390",
     width: "100%",
@@ -54,14 +56,16 @@ function Row({ title, fetchUrl, isLargeRow }) {
         key={movie.id}
         onClick={() => handleClick(movie)}
         className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-        src={`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`}
+        src={`${base_url}${ isLargeRow ? movie.poster_path : movie.backdrop_path}`}
         alt={movie.name}/>
       )
       ))}
      </div>
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
+     <div style={{padding: "20px"}}>
+     {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
+     </div>
+         
     </div>
   );
   }
-
-export default Row
+export default Row;
